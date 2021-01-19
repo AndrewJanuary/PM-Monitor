@@ -29,7 +29,11 @@ Serial to USB adapter
 
 ## Install
 
-Required dependencies are defined in requirements.txt
+A python virtual environment is recommended. You can easily create a new virtual environment using venv.
+
+python -m venv venv
+
+Required dependencies are defined in requirements.txt. You can install these using pip.
 
 Pip install -r requirements.txt
 
