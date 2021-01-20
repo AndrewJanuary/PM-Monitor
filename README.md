@@ -1,9 +1,10 @@
 # Particulate Matter Monitor
 
 ## Overview
+
 An air quality monitoring app.
 
-Reads data from a SDS011 particulate matter sensor via a serial port and uploads it to a 
+Reads data from an [SDS011 particulate matter sensor](https://www.hackair.eu/docs/sds011/) via a serial port and uploads it to an [Adafruit IO](https://learn.adafruit.com/welcome-to-adafruit-io) account.
 
 Inspired by tutorial from Raspberry Pi magazine issue
 
@@ -17,14 +18,14 @@ Small particulate matter less than 10 microns in diameter (PM 10) is recognised 
 
 ### Health Implications of PM
 
-Exposure to particle matter less than 2.5 microns in diameter (PM 2.5) is known to cause respiratory and cardiovascular illness.
+Exposure to particle matter less than 2.5 microns in diameter (PM 2.5) is known to cause and contribute to respiratory and cardiovascular illness.
 
 There is some evidence which suggests that high levels of PM may contribute to the transmission and lethality of COVID-19.
 
 ## Recommended hardware
 
-Raspberry Pi
-SDS011
+Raspberry Pi (for convenience of placing the sensor)
+[SDS011 PM sensor](https://www.hackair.eu/docs/sds011/)
 Serial to USB adapter
 
 ## Install
@@ -37,23 +38,15 @@ Required dependencies are defined in requirements.txt. You can install these usi
 
 Pip install -r requirements.txt
 
-## Ada FruitIO
+## AdaFruit IO
 
-An Ada FruitIO account and API key is required in order to upload data
+An [Adafruit IO](https://learn.adafruit.com/welcome-to-adafruit-io) account and API key are required in order to upload data.
 
 ## Setup
 
-Run setup.py
-
-Enter 
 
 ## Usage
 
-A python virtual environment is recommended
-
-Run python main.py start
-
-Offline mode
 
 ## Testing
 
