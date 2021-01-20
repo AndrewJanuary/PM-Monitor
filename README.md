@@ -14,13 +14,13 @@ There are probably much more comprehensive and robust implementations out there 
 
 ## Why
 
-Small particulate matter less than 10 microns in diameter (PM 10) is recognised globally by health and environmental organisations as a common contributor to air pollution.
+Small particulate matter less than 10 microns in diameter (PM 10) is recognised [globally by health](https://www.who.int/health-topics/air-pollution) and [environmental organisations](https://www.eea.europa.eu/themes/air) as a common contributor to air pollution.
 
 ### Health Implications of PM
 
 Exposure to particle matter less than 2.5 microns in diameter (PM 2.5) is known to cause and contribute to respiratory and cardiovascular illness.
 
-There is some evidence which suggests that high levels of PM may contribute to the transmission and lethality of COVID-19.
+There is [some evidence which suggests](https://www.theguardian.com/environment/2020/apr/24/coronavirus-detected-particles-air-pollution) that high levels of PM may contribute to the transmission and lethality of COVID-19.
 
 ## Recommended hardware
 
