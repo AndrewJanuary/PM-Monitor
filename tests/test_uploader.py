@@ -1,5 +1,5 @@
 import sys
-from services.uploader import Uploader
+from app.uploader import Uploader
 from Adafruit_IO import RequestError
 from unittest.mock import Mock
 import io
