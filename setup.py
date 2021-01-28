@@ -21,7 +21,6 @@ def main():
         key = (input("Enter AIO API Key: "))
         pm_two_five = (input("Enter name of PM 2.5 feed: "))
         pm_two_ten = (input("Enter name of PM 10 feed: "))
-        # config = set_config('test', '123', 'feed1', 'feed2')
         config = set_config(username, key, pm_two_five, pm_two_ten)
         write_config(file, config)
 
