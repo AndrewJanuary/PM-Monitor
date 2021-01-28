@@ -8,7 +8,7 @@ An air quality monitoring app.
 
 Reads data from an [SDS011 particulate matter sensor](https://www.hackair.eu/docs/sds011/) via a serial port and uploads it to an [Adafruit IO](https://learn.adafruit.com/welcome-to-adafruit-io) account.
 
-Inspired by tutorial from Raspberry Pi magazine issue
+Inspired by an [article from HackSpace magazine issue 21](https://hackspace.raspberrypi.org/issues/21) (August 2019) 
 
 ### Disclaimer
 
