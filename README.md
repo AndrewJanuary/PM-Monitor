@@ -46,9 +46,17 @@ An [Adafruit IO](https://learn.adafruit.com/welcome-to-adafruit-io) account and 
 
 ## Setup
 
+Run `python main.py setup` to launch the setup script.
+
+This script will prompt for input and write the following values to the config.yml file:
+- AIO username
+- AIO API Key
+- PM 2.5 feed name in AIO account
+- PM 10 feed name in AIO account
 
 ## Usage
 
+Run `python main.py start` to launch the app.
 
 ## Testing
 
