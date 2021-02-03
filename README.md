@@ -8,7 +8,7 @@ An air quality monitoring app.
 
 Reads data from an [SDS011 particulate matter sensor](https://www.hackair.eu/docs/sds011/) via a serial port and uploads it to an [Adafruit IO](https://learn.adafruit.com/welcome-to-adafruit-io) account.
 
-Inspired by tutorial from Raspberry Pi magazine issue
+Inspired by an [article from HackSpace magazine issue 21](https://hackspace.raspberrypi.org/issues/21) (August 2019). 
 
 ### Disclaimer
 
@@ -26,19 +26,21 @@ There is [some evidence which suggests](https://www.theguardian.com/environment/
 
 ## Recommended hardware
 
-Raspberry Pi (for convenience of placing the sensor)
-[SDS011 PM sensor](https://www.hackair.eu/docs/sds011/)
-Serial to USB adapter
+- Raspberry Pi (for convenience of placing the sensor)
+- [SDS011 PM sensor](https://www.hackair.eu/docs/sds011/)
+- Serial to USB adapter
 
 ## Install
 
 A python virtual environment is recommended. You can easily create a new virtual environment using venv.
 
-python -m venv venv
+`python -m venv PM-App`
 
-Required dependencies are defined in requirements.txt. You can install these using pip.
+Required dependencies are defined in [requirements.txt](https://github.com/AndrewJanuary/PM-Monitor/blob/main/requirements.txt).
 
-Pip install -r requirements.txt
+You can install these using pip.
+
+`Pip install -r requirements.txt`
 
 ## AdaFruit IO
 
@@ -54,18 +56,19 @@ This script will prompt for input and write the following values to the config.y
 - PM 2.5 feed name in AIO account
 - PM 10 feed name in AIO account
 
+
 ## Usage
 
 Run `python main.py start` to launch the app.
 
 ## Testing
 
-Automated tests use the Pytest framework
+Automated tests are implemented using the Pytest framework.
 
-From the root directory of the repo run python -m pytest
+From the root directory of the repo run `python -m pytest` to execute tests.
 
 This project uses cov for reporting test coverage
 
-From the root directory of the repo run python -m pytest --cov
+From the root directory of the repo run `python -m pytest --cov` to execute tests and generate a coverage report.
 
 ## Known Issues
