@@ -11,10 +11,15 @@ class Uploader:
 
     def read_config(self, file):
         logging.debug('Reading config file')
-        with open(file, 'r') as ymlfile:
-            config = yaml.load(ymlfile, Loader=yaml.SafeLoader)
-        return config['aio']['username'], config['aio']['key'], config['aio']['feeds']['pm-two-five'], \
-               config['aio']['feeds']['pm-ten']
+        try:
+            with open(file, 'r') as ymlfile:
+                config = yaml.load(ymlfile, Loader=yaml.SafeLoader)
+            return config['aio']['username'], config['aio']['key'], config['aio']['feeds']['pm-two-five'], \
+                config['aio']['feeds']['pm-ten']
+        except FileNotFoundError:
+            message = 'Config file not found'
+            logging.error(message)
+            raise Exception(message)
 
     def connect_to_aio(self, username, key):
         try:
