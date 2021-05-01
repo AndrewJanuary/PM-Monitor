@@ -73,6 +73,10 @@ Ensure that the PM sensor unit is connected via a USB port to the device which w
 Check that the device has an active network connection
 Run `python main.py start` to launch the app.
 
+Check the temrinal output to confirm that the sensor is active and the application is correctly reading and logging values
+Check the AIO feeds to confirm that the application is correctly sending data to the feeds
+
+
 ## Testing
 
 Automated tests are implemented using the Pytest framework.
