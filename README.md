@@ -34,7 +34,12 @@ There is [some evidence which suggests](https://www.theguardian.com/environment/
 
 A python virtual environment is recommended. You can easily create a new virtual environment using venv.
 
-`python -m venv PM-App`
+`python -m venv PM-App` 
+
+Launch the virtual environment
+
+E.g on a Unix/Linux OS run the execute the following from the root of the repo
+`source PM-App/bin/activate`
 
 Required dependencies are defined in [requirements.txt](https://github.com/AndrewJanuary/PM-Monitor/blob/main/requirements.txt).
 
@@ -59,6 +64,8 @@ This script will prompt for input and write the following values to the config.y
 
 ## Usage
 
+Ensure that the PM sensor unit is connected via a USB port to the device which will run the application
+Check that the device has an active network connection
 Run `python main.py start` to launch the app.
 
 ## Testing
