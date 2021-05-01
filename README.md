@@ -61,6 +61,9 @@ This script will prompt for input and write the following values to the config.y
 - PM 2.5 feed name in AIO account
 - PM 10 feed name in AIO account
 
+Your AIO username and API key can be found on the AIO profile page, in the `My Key` tab.
+See [the AIO API docs](https://io.adafruit.com/api/docs/#adafruit-io-http-api) for more details on creating and useing API keys 
+
 
 ## Usage
 
