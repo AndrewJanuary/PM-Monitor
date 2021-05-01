@@ -64,6 +64,8 @@ This script will prompt for input and write the following values to the config.y
 Your AIO username and API key can be found on the AIO profile page, in the `My Key` tab.
 See [the AIO API docs](https://io.adafruit.com/api/docs/#adafruit-io-http-api) for more details on creating and useing API keys 
 
+Check that the feeds exist in your AIO account before proceeding to start the app. You may need to manually creat the feeds.
+Check the contents of the `config.yml` file before proceeding to start the app.
 
 ## Usage
 
