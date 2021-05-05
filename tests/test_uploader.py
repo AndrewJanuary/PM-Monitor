@@ -1,8 +1,15 @@
-import sys
+import sys, pytest
 from app.uploader import Uploader
 from Adafruit_IO import RequestError
 from unittest.mock import Mock
 import io
+
+def test_read_config_failure_raises_exception():
+    with pytest.raises(Exception) as e_info:
+        up = Uploader('target name')
+        file='missing_config_file.yml'
+        up.read_config(file)
+    assert "Config file not found" in str(e_info.value)
 
 def test_upload_service_init_values():
     up = Uploader('target name')
