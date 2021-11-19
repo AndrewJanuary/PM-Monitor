@@ -20,7 +20,7 @@ parse==1.12.1
 parse-type==0.5.2
 pipenv==2018.11.26
 pluggy==0.13.0
-py==1.8.0
+py==1.10.0
 pylint==2.2.2
 pyparsing==2.4.2
 pyserial==3.4
