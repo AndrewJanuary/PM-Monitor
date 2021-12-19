@@ -26,6 +26,7 @@ jobs:
         # exit-zero treats all errors as warnings. The GitHub editor is 127 chars wide
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Exeucte mutation testing run with mutmut
+      continue-on-error: true
       run: |
-         mutmut run --paths-to-mutate app
+         mutmut run --paths-to-mutate app --no-progress
          echo running mutations on code in app folder with mutmut
