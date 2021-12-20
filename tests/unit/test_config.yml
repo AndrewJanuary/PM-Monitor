@@ -1,0 +1,6 @@
+aio:
+  username: 'test user'
+  key: 'abc123'
+  feeds:
+    pm-two-five: 'pm-two-five'
+    pm-ten: 'pm-ten'
