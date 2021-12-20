@@ -18,7 +18,7 @@ def test_upload_service_init_values():
 
 def test_upload_service_read_config():
     up = Uploader('target name')
-    file='tests/test_config.yml'
+    file='tests/unit/test_config.yml'
     username, key, pm_two_five, pm_ten = up.read_config(file)
     assert username == 'test user'
     assert key == 'abc123'
