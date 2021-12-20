@@ -2,6 +2,8 @@
 
 ![Python application](https://github.com/AndrewJanuary/PM-Monitor/workflows/Python%20application/badge.svg?branch=main)
 
+![Mutation](https://github.com/AndrewJanuary/PM-Monitor/workflows/Mutation/badge.svg?branch=main)
+
 ## Overview
 
 An air quality monitoring app.
