@@ -1,12 +1,12 @@
-import yaml, os
-from Adafruit_IO import Client, AdafruitIOError, RequestError
-import logging, argparse, sys
+import yaml
+from Adafruit_IO import Client, AdafruitIOError
+import logging, argparse, sys, serial
 
 logging.basicConfig(filename='airquality.log', level=logging.DEBUG, filemode='a',
                     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
 
 file = 'config.yml'
-default_config = {"aio": {"username": '', "key": '', "feeds": {"pm-two-five": '', "pm-ten": ''}}}
+default_config = {"aio": {"username": '', "feeds": {"pm-two-five": '', "pm-ten": ''}}}
 
 
 def main():
@@ -18,10 +18,11 @@ def main():
         write_config(file, default_config)
     else:
         username = input("Enter AIO username: ")
-        key = (input("Enter AIO API Key: "))
+        print("Note: your AIO API key must be set as the AIO_KEY environment variable, not stored in config.")
         pm_two_five = (input("Enter name of PM 2.5 feed: "))
         pm_two_ten = (input("Enter name of PM 10 feed: "))
-        config = set_config(username, key, pm_two_five, pm_two_ten)
+        list_serial_devices()
+        config = set_config(username, pm_two_five, pm_two_ten)
         write_config(file, config)
 
 
@@ -29,17 +30,19 @@ def read_config(file):
     logging.debug('Reading config file')
     with open(file, 'r') as ymlfile:
         config = yaml.load(ymlfile, Loader=yaml.SafeLoader)
-    return config['aio']['username'], config['aio']['key']
+    return config['aio']['username']
 
 
-def set_config(username, key, pm_two_five, pm_ten):
+def set_config(username, pm_two_five, pm_ten):
     config = default_config
     config['aio']['username'] = ("{0}".format(username))
-    config['aio']['key'] = key
     config['aio']['feeds']['pm-two-five'] = pm_two_five
     config['aio']['feeds']['pm-ten'] = pm_ten
     return config
 
+
+def list_serial_devices():
+   serial.tools.list_ports.comports(include_links=False)
 
 def write_config(file, values):
     logging.debug('Writing to config file')
