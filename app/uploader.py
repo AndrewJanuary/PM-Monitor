@@ -1,5 +1,6 @@
 from Adafruit_IO import Client, AdafruitIOError, RequestError
 import logging
+import os
 import yaml
 
 
@@ -14,12 +15,17 @@ class Uploader:
         try:
             with open(file, 'r') as ymlfile:
                 config = yaml.load(ymlfile, Loader=yaml.SafeLoader)
-            return config['aio']['username'], config['aio']['key'], config['aio']['feeds']['pm-two-five'], \
-                config['aio']['feeds']['pm-ten']
         except FileNotFoundError:
             message = 'Config file not found'
             logging.error(message)
             raise Exception(message)
+        key = os.environ.get('AIO_KEY')
+        if not key:
+            message = 'AIO_KEY environment variable not set'
+            logging.error(message)
+            raise Exception(message)
+        return config['aio']['username'], key, config['aio']['feeds']['pm-two-five'], \
+            config['aio']['feeds']['pm-ten']
 
     def connect_to_aio(self, username, key):
         try:
