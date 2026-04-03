@@ -21,6 +21,8 @@ def main():
         print(message)
         sys.exit(1)
 
+    sen.warm_up()
+
     if args.offline:
         start_offline(sen)
     else:

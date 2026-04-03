@@ -1,7 +1,11 @@
 import sys
+import time
 import serial, logging
 from Adafruit_IO import Client
 from serial import SerialException
+
+WARMUP_SECONDS = 30
+PM_MAX = 999.9
 
 
 class Sensor():
@@ -13,6 +17,10 @@ class Sensor():
         self.startbyte = startbyte
         self.endbyte = endbyte
         self.receivebyte = receivebyte
+
+    def warm_up(self):
+        logging.info('Waiting %s seconds for sensor warm-up', WARMUP_SECONDS)
+        time.sleep(WARMUP_SECONDS)
 
     def connect_to_sensor(self, port):
         try:
@@ -40,22 +48,32 @@ class Sensor():
 
     def get_pm_two_five(self, data):
         pm_two_five = int.from_bytes(b''.join(data[2:4]), byteorder='little') / 10
+        if pm_two_five > PM_MAX:
+            message = str.format('PM2.5 reading {0} exceeds maximum valid value {1}', pm_two_five, PM_MAX)
+            logging.error(message)
+            raise Exception(message)
         return pm_two_five
-
 
     def get_pm_ten(self, data):
         pm_ten = int.from_bytes(b''.join(data[4:6]), byteorder='little') / 10
+        if pm_ten > PM_MAX:
+            message = str.format('PM10 reading {0} exceeds maximum valid value {1}', pm_ten, PM_MAX)
+            logging.error(message)
+            raise Exception(message)
         return pm_ten
 
-        ##TODO Checksum on message
-        ## Sanity check values for PM
-    def check_message(self,data):
+    def check_message(self, data):
         if data[0] != self.startbyte:
             message = str.format('Unexpected startbyte {0} received from sensor. Expected {1}', data[0], self.startbyte)
             logging.error(message)
             raise Exception(message)
         if data[1] != self.receivebyte:
             message = str.format('Unexpected recievebyte {0} received from sensor. Expected {1}', data[1], self.receivebyte)
+            logging.error(message)
+            raise Exception(message)
+        checksum = sum(data[i][0] for i in range(2, 8)) % 256
+        if checksum != data[8][0]:
+            message = str.format('Checksum mismatch: calculated {0}, received {1}', checksum, data[8][0])
             logging.error(message)
             raise Exception(message)
         return data

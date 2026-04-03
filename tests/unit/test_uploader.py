@@ -16,7 +16,8 @@ def test_upload_service_init_values():
     assert up.target == 'target name'
     assert len(up.data) == 0
 
-def test_upload_service_read_config():
+def test_upload_service_read_config(monkeypatch):
+    monkeypatch.setenv('AIO_KEY', 'abc123')
     up = Uploader('target name')
     file='tests/unit/test_config.yml'
     username, key, pm_two_five, pm_ten = up.read_config(file)

@@ -1,12 +1,15 @@
 import serial, pytest
 from serial import SerialException
-from unittest.mock import Mock
+from unittest.mock import Mock, patch
 
 from app.sensor import Sensor
 
 valid_message = [b'\xaa', b'\xc0', b'\x13', b'\x00', b'5', b'\x00', b'\xd6', b'(', b'F', b'\xab']
 invalid_startbyte = [b'\xab', b'\xc0', b'\x13', b'\x00', b'5', b'\x00', b'\xd6', b'(', b'F', b'\xab']
 invalid_receivebyte = [b'\xaa', b'\xc1', b'\x13', b'\x00', b'5', b'\x00', b'\xd6', b'(', b'F', b'\xab']
+invalid_checksum = [b'\xaa', b'\xc0', b'\x13', b'\x00', b'5', b'\x00', b'\xd6', b'(', b'G', b'\xab']
+pm_two_five_out_of_range = [b'\xaa', b'\xc0', b'\x10', b'\x27', b'5', b'\x00', b'\xd6', b'(', b'j', b'\xab']
+pm_ten_out_of_range = [b'\xaa', b'\xc0', b'\x13', b'\x00', b'\x10', b'\x27', b'\xd6', b'(', b'H', b'\xab']
 startbyte = b'\xaa'
 endbyte = b'0xAB'
 receivebyte = b'\xc0'
@@ -66,3 +69,29 @@ def test_invalid_receivebyte_failure_raises_exception():
         sen = Sensor('Test sensor name string', '/testdir/testserialport', startbyte, endbyte, receivebyte)
         sen.check_message(invalid_receivebyte)
     assert "Unexpected recievebyte" in str(e_info.value)
+
+def test_invalid_checksum_raises_exception():
+    with pytest.raises(Exception) as e_info:
+        sen = Sensor('Test sensor name string', '/testdir/testserialport', startbyte, endbyte, receivebyte)
+        sen.check_message(invalid_checksum)
+    assert "Checksum mismatch" in str(e_info.value)
+
+def test_pm_two_five_out_of_range_raises_exception():
+    with pytest.raises(Exception) as e_info:
+        sen = Sensor('Test sensor name string', '/testdir/testserialport', startbyte, endbyte, receivebyte)
+        sen.get_pm_two_five(pm_two_five_out_of_range)
+    assert "PM2.5 reading" in str(e_info.value)
+    assert "exceeds maximum valid value" in str(e_info.value)
+
+def test_pm_ten_out_of_range_raises_exception():
+    with pytest.raises(Exception) as e_info:
+        sen = Sensor('Test sensor name string', '/testdir/testserialport', startbyte, endbyte, receivebyte)
+        sen.get_pm_ten(pm_ten_out_of_range)
+    assert "PM10 reading" in str(e_info.value)
+    assert "exceeds maximum valid value" in str(e_info.value)
+
+def test_warm_up_sleeps_for_warmup_seconds():
+    sen = Sensor('Test sensor name string', '/testdir/testserialport', startbyte, endbyte, receivebyte)
+    with patch('app.sensor.time.sleep') as mock_sleep:
+        sen.warm_up()
+        mock_sleep.assert_called_once_with(30)
